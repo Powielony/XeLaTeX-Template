@@ -1,45 +1,14 @@
 \documentclass{article}
 
-% v0.1
+% v.0.1.1
 
 % Kompilować przez 'xelatex'
-\usepackage{fontspec}
-\usepackage{a4wide} %Cieńsze ramki
-\setmainfont{Century Schoolbook}
-\setmonofont{Miriam Mono CLM Book}
-
-% Pomaga z nazwiskami na stronie tytułowej; tworzenie kolumn
-\usepackage{multicol}
-% Pomaga z równaniami matematycznymi
-\usepackage{amsmath}
-% Pomaga z formatowaniem: pierwszy paragraf po \subsection{} jest zatabowany
-\usepackage{indentfirst}
-% Czasem naprawia wykresy 
-\usepackage{float}
-% \justify
-\usepackage{ragged2e}
-% Obsługa obrazków
-\usepackage{graphicx}
-\graphicspath{ {./images/} }
-% Rysunki
-\usepackage{tikz}
-% Kolor Czcionek; elementów tabeli
-\usepackage{xcolor, colortbl}
-% nie trzeba już \usepackage{circuitikz}; obwody elektryczne
-\input{ElementySiS.tex} 
-% Scalanie w tabelce
-\usepackage{multirow}
-% Zmyślne listy typu a) i inne
-\usepackage[shortlabels]{enumitem}
-
-% Komenda do wstawiania pustej strony: \blankpage
-\newcommand\blankpage{%
-  \null
-  \thispagestyle{empty}%
-  \addtocounter{page}{-1}%
-  \newpage}
+\input{header.tex}
 
 % Gotowe elementy, do przekopiowania i usunięcia procentów
+
+%% Komenda do wstawiania pustej strony: 
+%\blankpage
 
 %% Wklejanie grafiki
 %\begin{center}
