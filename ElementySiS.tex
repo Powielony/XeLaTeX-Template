@@ -1,0 +1,74 @@
+% v.0.2
+
+\usepackage[%
+    europeanresistors,
+    cuteinductors]{circuitikz}
+
+\makeatletter
+
+%% źródło napięcia strzałka w kółku
+\pgfcircdeclarebipolescaled{sources}
+{}
+{\ctikzvalof{bipoles/isource/height}}
+{ezrodlo}
+{\ctikzvalof{bipoles/isource/height}}
+{\ctikzvalof{bipoles/isource/width}}
+{
+    % kółko
+    \pgfpointorigin
+    \pgf@circ@setlinewidth{bipoles}{\pgfstartlinewidth}
+    \pgfpathellipse{\pgfpointorigin}{\pgfpoint{0}{\pgf@circ@res@up}}{\pgfpoint{\pgf@circ@res@left}{0}}
+    \pgf@circ@draworfill
+
+    % strzałka
+    \pgfpathmoveto{\pgfpoint{.7\pgf@circ@res@left}{\pgf@circ@res@zero}}
+    \pgfpathlineto{\pgfpoint{.7\pgf@circ@res@right}{\pgf@circ@res@zero}}
+    \pgfusepath{draw}
+    \pgfscope
+        \pgftransformshift{\pgfpoint{.5\pgf@circ@res@right}{\pgf@circ@res@zero}}
+        \pgfnode{currarrow}{center}{}{}{\pgfusepath{stroke}}
+    \endpgfscope
+}
+
+%% źródło prądu strzałka w podwójnym kółku
+\pgfcircdeclarebipolescaled{sources}
+{}
+{\ctikzvalof{bipoles/isourceam/height}}
+{izrodlo}
+{\ctikzvalof{bipoles/isourceam/height}}
+{\ctikzvalof{bipoles/isourceam/width}}
+{
+    % kółko zewnętrzne
+    \pgfpointorigin
+    \pgf@circ@setlinewidth{bipoles}{\pgfstartlinewidth}
+    \pgfpathellipse{\pgfpointorigin}{\pgfpoint{0}{\pgf@circ@res@up}}{\pgfpoint{\pgf@circ@res@left}{0}}
+    \pgf@circ@draworfill
+
+    % kółko wewnętrzne
+    \pgfpointorigin
+    \pgf@circ@setlinewidth{bipoles}{\pgfstartlinewidth}
+    \pgfpathellipse{\pgfpointorigin}{\pgfpoint{0}{0.8\pgf@circ@res@up}}{\pgfpoint{0.8\pgf@circ@res@left}{0}}
+    \pgf@circ@draworfill
+
+    %strzałka
+    \pgfpathmoveto{\pgfpoint{.3\pgf@circ@res@right}{\pgf@circ@res@zero}}
+    \pgfpathlineto{\pgfpoint{.5\pgf@circ@res@left}{\pgf@circ@res@zero}}
+    \pgfusepath{draw}
+    \pgfscope
+        \pgftransformshift{\pgfpoint{.3\pgf@circ@res@right}{\pgf@circ@res@zero}}
+        \pgfnode{currarrow}{center}{}{}{\pgfusepath{stroke}}
+    \endpgfscope
+}
+
+% paths
+
+\def\pgf@circ@ezrodlo@path#1{\pgf@circ@bipole@path{ezrodlo}{#1}}
+\compattikzset{ezrodlo/.style = {\circuitikzbasekey,
+        /tikz/to path=\pgf@circ@ezrodlo@path, l=#1}}
+
+\def\pgf@circ@izrodlo@path#1{\pgf@circ@bipole@path{izrodlo}{#1}}
+\compattikzset{izrodlo/.style = {\circuitikzbasekey,
+        /tikz/to path=\pgf@circ@izrodlo@path, l=#1}}
+
+
+\makeatother
